@@ -22,14 +22,33 @@ public class AutolocApiApplication {
     CommandLineRunner initDonnees(VehiculeRepository vehiculeRepository) {
         return args -> {
             if (vehiculeRepository.count() == 0) {
-                vehiculeRepository.save(new Vehicule(null, "TU-1234-AB", "Renault", "Clio",
-                        CategorieVehicule.CITADINE, new BigDecimal("45.00"), StatutVehicule.DISPONIBLE));
 
-                vehiculeRepository.save(new Vehicule(null, "TU-5678-CD", "Peugeot", "308",
-                        CategorieVehicule.BERLINE, new BigDecimal("65.00"), StatutVehicule.DISPONIBLE));
+                Vehicule v1 = new Vehicule();
+                v1.setImmatriculation("TU-1234-AB");
+                v1.setMarque("Renault");
+                v1.setModele("Clio");
+                v1.setCategorie(CategorieVehicule.CITADINE);
+                v1.setTarifJournalier(new BigDecimal("45.00"));
+                v1.setStatut(StatutVehicule.DISPONIBLE);
+                vehiculeRepository.save(v1);
 
-                vehiculeRepository.save(new Vehicule(null, "TU-9012-EF", "Toyota", "RAV4",
-                        CategorieVehicule.SUV, new BigDecimal("95.00"), StatutVehicule.MAINTENANCE));
+                Vehicule v2 = new Vehicule();
+                v2.setImmatriculation("TU-5678-CD");
+                v2.setMarque("Peugeot");
+                v2.setModele("308");
+                v2.setCategorie(CategorieVehicule.BERLINE);
+                v2.setTarifJournalier(new BigDecimal("65.00"));
+                v2.setStatut(StatutVehicule.DISPONIBLE);
+                vehiculeRepository.save(v2);
+
+                Vehicule v3 = new Vehicule();
+                v3.setImmatriculation("TU-9012-EF");
+                v3.setMarque("Toyota");
+                v3.setModele("RAV4");
+                v3.setCategorie(CategorieVehicule.SUV);
+                v3.setTarifJournalier(new BigDecimal("95.00"));
+                v3.setStatut(StatutVehicule.MAINTENANCE);
+                vehiculeRepository.save(v3);
 
                 System.out.println("✅ 3 véhicules de démonstration insérés.");
             }

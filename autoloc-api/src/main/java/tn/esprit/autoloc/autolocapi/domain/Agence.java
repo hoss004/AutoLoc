@@ -1,16 +1,18 @@
 package tn.esprit.autoloc.autolocapi.domain;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "agence")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Agence {
 
     @Id
@@ -28,4 +30,10 @@ public class Agence {
 
     @Column(nullable = false, length = 20)
     private String telephone;
+
+    @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL)
+    private List<Vehicule> vehicules = new ArrayList<>();
+
+    @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL)
+    private List<Employe> employes = new ArrayList<>();
 }
